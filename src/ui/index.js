@@ -1,0 +1,1 @@
+export { default as BlockCheck } from './components/BlockCheck'
