@@ -1,5 +1,4 @@
-
- import { LoginPage, RegisterPage } from '../pages'
+import { LoginPage, RegisterPage } from '../pages'
 
 export const AuthRoutes =  [
   { path: '*', element: <LoginPage /> },

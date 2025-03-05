@@ -1,4 +1,4 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, Navigate, RouterProvider } from "react-router-dom";
 import { AuthRoutes } from "../auth";
 import { GetJournalRoutes } from "../journal";
 import { BlockCheck } from "../ui/";
@@ -16,6 +16,11 @@ const GetAuthRoutes = createBrowserRouter([{
   children: AuthRoutes,
 }]);
 
+const GetDefaultRoutes = createBrowserRouter([{
+  path: "/*",
+  element: <Navigate to="/auth/login" replace />
+}]);
+
 export default function AppRouter() {
   const status = useCheckOut();
 
@@ -30,6 +35,10 @@ export default function AppRouter() {
       ? <RouterProvider router={GetAppRoutes} />
       : <RouterProvider router={GetAuthRoutes} />
     }
+
+    <RouterProvider router={GetDefaultRoutes} />
+
+    
     </>
   );
 }
