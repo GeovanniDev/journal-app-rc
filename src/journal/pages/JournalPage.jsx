@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { startNewNote } from "../../store/journal/thunks";
 
 export default function JournalPage() {
-  const { isSaving } = useSelector((state) => state.journal);
+  const { isSaving, active } = useSelector((state) => state.journal);
   const dispatch = useDispatch();
   const handleAddNote = () => {
     dispatch(startNewNote());
@@ -15,8 +15,8 @@ export default function JournalPage() {
   return (
     <>
       <JournalLayout>
-        <NothingSelectView />
-        {/* <ViewNote></ViewNote> */}
+        {(active !== null) ? <ViewNote /> : <NothingSelectView />}
+
         <IconButton
           disabled={isSaving}
           onClick={handleAddNote}
